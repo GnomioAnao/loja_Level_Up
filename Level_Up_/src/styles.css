@@ -1,0 +1,217 @@
+/* Importar a fonte "Press Start 2P" */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #f5f5dc; /* Cor creme */
+    color: #4b0082; /* Cor roxo */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f5f5dc;
+    border-bottom: 7px solid #4b0082; /* Linha roxa embaixo */
+}
+
+/* Logo e título */
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 50px;
+    margin-right: 10px;
+}
+
+h1 {
+    font-size: 24px;
+    color: #4b0082;
+}
+
+/* Busca */
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar {
+    padding: 10px;
+    border: 2px solid #4b0082;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 250px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.search-button {
+    background-color: #4b0082;
+    color: #f5f5dc;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-family: 'Press Start 2P', cursive;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #6a0dad; /* Efeito hover no botão de busca */
+}
+
+/* Ícones */
+.icon-container {
+    display: flex;
+    align-items: center;
+}
+
+.icon-container a {
+    color: #4b0082;
+    font-size: 24px;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+.icon-container a:hover {
+    color: #6a0dad; /* Efeito hover nos ícones */
+}
+
+.menu {
+    background-color: #4b0082;
+    padding: 10px 0;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+}
+
+.menu ul li {
+    margin: 0 15px;
+}
+
+.menu ul li a {
+    color: #f5f5dc;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.menu ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    background-color: #4b0082;
+    color: #f5f5dc;
+    text-align: center;
+    padding: 15px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+::-webkit-scrollbar {
+    width: 20px; /* Largura da barra de rolagem */
+    height: 10px; /* Altura para barras de rolagem horizontais */
+}
+
+::-webkit-scrollbar-track {
+    background: #4b0082; /* Cor de fundo da "pista" da barra de rolagem */
+    border: 4px solid #f5f5dc; /* Borda simulando um efeito pixelado */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #FFD700; /* Cor do "polegar" da barra de rolagem */
+    border: 4px solid #4b0082; /* Borda para o polegar */
+    border-radius: 0px; /* Evita arredondamentos, mantendo o estilo pixelado */
+    box-shadow: inset 0 0 0 4px #f5f5dc; /* Simula mais "pixels" dentro da barra */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #FF4500; /* Cor do polegar ao passar o mouse */
+}
+
+body {
+    background-image: url('../public/dino_base.jpg'), url('../public/dino_base.jpg');
+    background-size: cover, cover;
+    background-position: 0 0;
+    background-repeat: repeat, repeat; /* A imagem se repete para dar continuidade */
+    animation: mover-fundo 10s linear infinite; /* Animação do fundo */
+}
+
+@keyframes mover-fundo {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: -100% 0; /* Move o fundo horizontalmente */
+    }
+}
+
+/* Responsividade no header */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: center;
+    }
+
+    .logo-container h1 {
+        font-size: 20px;
+    }
+
+    .search-container {
+        margin-top: 10px;
+    }
+
+    .icon-container {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        height: 40px;
+    }
+
+    .search-bar {
+        width: 100%;
+    }
+
+    .icon-container a {
+        font-size: 20px;
+    }
+}
+
+/* Menu responsivo - Estilo hambúrguer */
+@media (max-width: 768px) {
+    .menu ul {
+        flex-direction: column;
+        align-items: flex-start;
+        display: none; /* Menu escondido inicialmente em telas pequenas */
+    }
+
+    .menu-toggle {
+        display: block;
+        background-color: #4b0082;
+        color: #f5f5dc;
+        padding: 10px;
+        cursor: pointer;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu ul li a {
+        font-size: 12px;
+    }
+}

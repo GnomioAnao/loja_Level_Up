@@ -1,0 +1,42 @@
+<br>
+<h1>Entrando Na Taverna...</h1>
+<body>
+    <div class="container">
+        <br><br>
+        <h1><b>{{mensagem}}</b></h1>
+        <br>
+        <form (ngSubmit)="gravar()" #formCliente="ngForm">
+            Nome Completo: 
+            <input type="text" placeholder="Username" [(ngModel)]="obj.nome" name="nomeCompleto" required>
+            
+            Telefone: 
+            <input type="text" placeholder="Número de Telefone" [(ngModel)]="obj.telefone" name="telefone" required>
+            
+            CPF: 
+            <input type="text" placeholder="CPF" [(ngModel)]="obj.documento" name="cpf" required (input)="formatarCPF()">
+            
+    
+            Endereço:
+            <input type="text" placeholder="Nome da rua" [(ngModel)]="obj.endereco" name="enderecoRua" required>
+            
+            CEP:
+            <input type="text" placeholder="CEP" [(ngModel)]="obj.cep" name="cep" required>
+            
+            Email: 
+            <input type="email" placeholder="Cadastro@gmail.com" [(ngModel)]="obj.email" name="email" required>
+            
+            Senha: 
+            <div class="senha-container">
+                <input [type]="senhaOculta ? 'password' : 'text'" placeholder="Senha" [(ngModel)]="obj.senha" name="senha" required>
+                <span class="eye-icon" (click)="toggleSenha()">{{ senhaOculta ? '👁️' : '🙈' }}</span>
+            </div>
+            Confirmar Senha:
+            <div class="senha-container">
+                <input [type]="senhaOculta ? 'password' : 'text'" placeholder="Senha" [(ngModel)]="obj.confirmarSenha" name="senha" required>
+                <span class="eye-icon" (click)="toggleSenha()">{{ senhaOculta ? '👁️' : '🙈' }}</span>
+            </div>
+            <button type="submit" class="btn-go">Go!</button>
+        </form>
+        
+    </div>
+</body>

@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.centraliza {
+    position: relative;
+    text-align: center;
+    padding: 0;
+    margin: 20px;
+}
+
+.pixelated-table {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    border-collapse: collapse;
+    margin: 20px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+}
+
+.pixelated-table th, .pixelated-table td {
+    border: 2px solid #000;
+    background-color: #f5f5dc;
+    color: #000;
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.pixelated-table th {
+    background-color: #4b0082;
+    color: #f5f5dc;
+    font-weight: bold;
+}
+
+/* Botão estilizado */
+.btn-go {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block;
+    width: 100%; /* O botão ocupará toda a largura */
+    max-width: 300px; /* Limite de largura para telas maiores */
+    margin: 20px auto;
+}
+
+.btn-go:hover {
+    background-color: #45a049;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .pixelated-table {
+        width: 100%;
+    }
+
+    .pixelated-table th {
+        display: none; /* Esconde o cabeçalho em telas pequenas */
+    }
+
+    .pixelated-table tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 2px solid #4b0082;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .pixelated-table td {
+        display: block;
+        text-align: left;
+        padding: 10px;
+        border: none;
+        font-size: 12px;
+    }
+
+    .pixelated-table td:before {
+        content: attr(data-label); /* Exibe o nome da coluna antes de cada célula */
+        font-weight: bold;
+        color: #4b0082;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    /* Move o botão abaixo da mensagem em telas menores */
+    .btn-go {
+        position: relative;
+        width: 100%;
+        max-width: none;
+        margin-top: 10px; /* Fica logo após a mensagem */
+        margin-bottom: 20px; /* Espaçamento inferior */
+    }
+}
+
+@media (max-width: 480px) {
+    .pixelated-table td {
+        font-size: 10px;
+        padding: 6px;
+    }
+
+    .btn-go {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}

@@ -1,0 +1,41 @@
+<br><br>
+<i><b>{{mensagem}}</b></i>
+<br><br>
+
+<!-- Mensagem de aviso quando a lista estiver vazia -->
+<h4 class="empty-message" *ngIf="lista.length <= 0">
+    Produtos utilizados em uma raid, necessário farm para continuar, tente mais tarde
+</h4>
+
+<!-- Seção de produtos -->
+<div class="feature-products">
+   <div class="product-item">
+     <ng-container *ngFor="let item of lista" >
+        <!-- Verifica se o item contém o filtro pesquisado -->
+        <div *ngIf="item.keywords.toLowerCase().indexOf(filtro.toLowerCase()) >= 0">
+            <br><br>
+            <!-- Nome do item -->
+            <h4>{{item.nome}}</h4>
+
+            <!-- Imagem do produto -->
+            <img src="/{{item.codigo}}.jpg" class="product-image" alt="{{item.nome}}"> <!-- Adicione um alt -->
+
+            <br><br>
+            <!-- Descrição do produto -->
+            {{item.descritivo}}
+            <br><br>
+            <!-- Preço do produto -->
+            R$ {{item.valor}}
+
+            <!-- Botões de ação -->
+            <button class="btn-go" (click)="verDetalhe(item)">Ver mais</button>
+            <button class="btn-go" *ngIf="item.quantidade > 0" (click)="adicionarItem(item)">Comprar</button>
+        </div>
+        </ng-container>
+    </div>
+</div>
+
+<!-- Rodapé do site -->
+<footer>
+    <p>&copy; Alicia Abade e Caio Lima - 2024</p>
+</footer>

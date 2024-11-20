@@ -1,0 +1,107 @@
+body {
+    background-color: #f5f5dc; /* Cor de fundo */
+    color: #f5f5dc; /* Cor do texto */
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    height: 100vh;
+}
+
+.centraliza{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* Centraliza apenas horizontalmente */
+    padding: 0;
+    text-align: center; /* Remove o padding, como solicitado */
+    /* position: absolute;
+    padding: 0px;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+}
+
+.container {
+    background-color: #4B0032; /* Cor de fundo para o formulário */
+    color: #f5f5dc;
+    border-radius: 10px;
+    padding: 20px; /* Maior espaçamento interno */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    text-align: center;
+    
+    /* Alinha o container no centro vertical e horizontal da página */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h2 {
+    color: #4CAF50; /* Cor dourada para o título */
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+b {
+    color: #FFD700; /* Cor dourada para a mensagem */
+    font-size: 18px;
+}
+
+input {
+    width: 90%; /* Ajuste de largura dos inputs */
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+}
+
+input:focus {
+    border-color: #FFD700; /* Cor da borda ao focar */
+    outline: none;
+}
+
+.btn-go {
+    background-color: #4CAF50; /* Cor do botão */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px 5px; /* Margem entre os botões */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-go a {
+    color: white; /* Cor do link dentro do botão */
+    text-decoration: none;
+}
+
+.btn-go:hover {
+    background-color: #45a049; /* Cor ao passar o mouse */
+}
+
+a {
+    color: #FFD700; /* Cor dourada para o link */
+    text-decoration: none;
+    font-size: 14px;
+}
+
+a:hover {
+    text-decoration: underline; /* Sublinhar ao passar o mouse */
+}
+
+.senha-container {
+    position: relative;
+}
+
+.eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
