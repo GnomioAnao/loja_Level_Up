@@ -1,0 +1,77 @@
+
+<div class="centraliza">
+    <h1>Inventário</h1>
+    <br><br>
+    <b>{{mensagem}}</b>
+    <br><br>
+    <table class="pixelated-table" border="1">
+        <!-- Cabeçalho da tabela -->
+        <tr>
+            <th class="pixelated-table">Cod.</th>
+            <th>Nome</th>
+            <th>Qtd</th>
+            <th>Valor R$</th>
+            <th>Total Por Item R$</th>
+            <th>Remover</th>
+        </tr>
+
+        <!-- Linhas de produtos -->
+        <tr *ngFor="let x of cesta.itens">
+            <td class="pixelated-table" data-label="Cod.">{{x.codigo}}</td>
+            <td class="pixelated-table" data-label="Nome">{{x.produto.nome}}</td>
+            <td class="pixelated-table" data-label="Qtd">{{x.quantidade}}</td>
+            <td class="pixelated-table" data-label="Valor">{{x.produto.valor}}</td>
+            <td class="pixelated-table" data-label="Total">{{x.valor}}</td>
+            <td class="pixelated-table" data-label="Remover"><button (click)="removerItem(x)">X</button></td>
+        </tr>
+
+        <!-- Total da cesta -->
+        <tr>
+            <td colspan="4">Total</td>
+            <td data-label="Total Geral">R$ {{cesta.total}}</td>
+        </tr>
+    </table>
+
+    <!-- Botão de esvaziar a cesta -->
+    <button class="btn-go" (click)="limparCesta()">Dropar Todos os Itens</button>
+</div>
+<script>
+    // Função para mover o botão para sua posição original
+    function moverBotaoOriginal() {
+        var botao = document.querySelector('.btn-go');
+        
+        // Volta o botão para a posição original no final da página
+        botao.style.position = 'relative';
+        botao.style.marginTop = '20px'; // Volta para o espaçamento padrão
+        botao.style.marginBottom = '20px';
+    }
+
+    // Função para limpar a cesta
+    function limparCesta() {
+        // Aqui colocamos a lógica para esvaziar a cesta.
+        // Exemplo básico de como limpar a lista de itens no HTML.
+        var tabela = document.querySelector('.pixelated-table');
+        var itens = tabela.querySelectorAll('tr');
+
+        // Remove todas as linhas da tabela (exceto o cabeçalho)
+        for (var i = 1; i < itens.length - 1; i++) {
+            itens[i].remove();
+        }
+
+        // Atualiza o valor total da cesta para R$ 0
+        var total = tabela.querySelector('tr:last-child td:nth-child(2)');
+        total.textContent = "R$ 0";
+
+        // Exibe uma mensagem de que a cesta foi esvaziada
+        var mensagem = document.querySelector('b');
+        mensagem.textContent = "A cesta está vazia!";
+
+        // Mover o botão de volta à posição original
+        moverBotaoOriginal();
+    }
+
+    // Adiciona o evento de clique ao botão "Dropar Todos os Itens"
+    document.querySelector('.btn-go').addEventListener('click', limparCesta);
+</script>
+
+

@@ -1,0 +1,70 @@
+body {
+    background-color: #f5f5dc; /* Cor de fundo definida */
+    color: #f5f5dc; /* Cor do texto para contraste com o fundo */
+    margin: 0; /* Remove margens padrão */
+    padding: 20px; /* Espaçamento interno */
+    display: flex; /* Usado para centralizar conteúdo */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    height: 70vh; /* Altura total da janela */
+}
+
+.container {
+    
+    background-color: #4B0032; /* Fundo claro para o formulário */
+    border-radius: 10px; /* Bordas arredondadas do contêiner */
+    padding: 10px; /* Espaçamento interno do contêiner */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para o contêiner */
+    width: 400px; /* Largura fixa para o formulário */
+    
+    
+}
+
+h1 {
+    color: #4CAF50; /* Cor verde para o título */
+    text-align: center; /* Centraliza o título */
+}
+
+input {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width: 80%; /* Largura total do input */
+    padding: 10px; /* Espaçamento interno */
+    margin: 10px 0; /* Margem acima e abaixo */
+    border: 1px solid #ccc; /* Borda leve */
+    border-radius: 5px; /* Bordas arredondadas */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    font-size: 16px; /* Tamanho da fonte */
+    
+}
+
+input:focus {
+    border-color: #4CAF50; /* Cor da borda ao focar */
+    outline: none; /* Remove o contorno padrão */
+} 
+
+.btn-go {
+    background-color: #4CAF50; /* Cor do botão */
+    color: white; /* Cor do texto do botão */
+    border: none; /* Remove a borda padrão */
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 10px 20px; /* Espaçamento interno do botão */
+    font-size: 16px; /* Tamanho da fonte do botão */
+    cursor: pointer; /* Cursor em forma de mão ao passar sobre o botão */
+    transition: background-color 0.3s; /* Transição suave para a cor do fundo */
+}
+
+.btn-go:hover {
+    background-color: #45a049; /* Cor do botão ao passar o mouse */
+}
+
+.senha-container {
+    position: relative;
+}
+
+.eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}

@@ -1,0 +1,29 @@
+<br><br>
+<div class="centraliza"><h2>Entrando Na Dungeon, XPs Estão a Sua Espera</h2></div>
+<div class="container">  
+    <b>{{mensagem}}</b>
+    <br><br>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="seuemail@gmail.com" [(ngModel)]="obj.email">
+    </div>
+    
+    <div>
+        <label for="senha">Senha:</label>
+        <div class="senha-container">
+            <input [type]="senhaOculta ? 'password' : 'text'" id="senha" placeholder="*******" [(ngModel)]="obj.senha">
+            <span class="eye-icon" (click)="toggleSenha()">{{ senhaOculta ? '👁️' : '🙈' }}</span>
+        </div>
+    </div>
+    
+    <div>
+        <button class="btn-go" (click)="fazerLogin()">Entrar</button>
+        <button class="btn-go" (click)="novoCadastro()">
+            <a href="./cliente">NG+</a>
+        </button>
+    </div>
+    
+    <div>
+        <a href="./esqueci">Pegue Seu Loot de Volta!!!</a>
+    </div>
+</div>

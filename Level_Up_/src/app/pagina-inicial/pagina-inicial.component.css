@@ -1,0 +1,104 @@
+/* Importar a fonte "Press Start 2P" */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Estilos padrão (para telas maiores) */
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #f5f5dc; /* Cor creme */
+    background-image: url('/public/dino1.jpg'); /* Imagem de fundo */
+    background-size: cover; /* Ajusta a imagem para cobrir todo o fundo */
+    background-repeat: no-repeat; /* Evita repetição da imagem */
+    background-position: center; /* Centraliza a imagem de fundo */
+    color: #4b0082; /* Cor roxo */
+    margin: 0;
+    padding: 0;
+}
+
+h4 {
+    color: #4b0082; /* Roxo */
+}
+
+.feature-products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+    margin-bottom: 80px; /* Espaçamento para evitar que os produtos toquem o rodapé */
+}
+
+.product-item {
+    background-color: rgba(245, 245, 220, 0.8); /* Cor creme com opacidade */
+    color: #4b0082;
+    border: 7px solid #4b0082; /* Bordas roxas */
+    padding: 10px;
+    border-radius: 8px;
+    width: 30%;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
+/* Ajustar imagem para manter um tamanho consistente */
+.product-image {
+    width: 100%;
+    max-width: 200px; /* Tamanho máximo da imagem */
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* Botões estilizados */
+.btn-go {
+    background-color: #4b0082; /* Cor roxa */
+    color: #f5f5dc; /* Cor creme */
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-top: 10px;
+    font-family: 'Press Start 2P', cursive;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transição suave */
+}
+
+/* Efeito de hover */
+.btn-go:hover {
+    background-color: #6a0dad; /* Cor roxa mais clara */
+    transform: scale(1.1); /* Aumenta o botão em 10% */
+}
+
+footer {
+    background-color: #4b0082;
+    color: #f5f5dc;
+    text-align: center;
+    padding: 15px; /* Ajustei o padding para garantir mais espaço */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Media Query para telas médias (tablets) */
+@media (max-width: 768px) {
+    .product-item {
+        width: 45%; /* Ajuste dos produtos */
+    }
+
+    .btn-go {
+        font-size: 10px; /* Reduzir tamanho dos botões */
+    }
+}
+
+/* Media Query para telas pequenas (celulares) */
+@media (max-width: 480px) {
+    .product-item {
+        width: 100%; /* 100% da largura em telas pequenas */
+    }
+
+    .btn-go {
+        font-size: 8px;
+        padding: 8px; /* Ajuste no padding para caber em telas pequenas */
+    }
+}
