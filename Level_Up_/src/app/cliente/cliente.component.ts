@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Cliente } from '../model/cliente';
+import { ClienteService } from '../service/cliente.service';
 
 
 @Component({
@@ -16,25 +17,33 @@ export class ClienteComponent {
   public obj: Cliente = new Cliente();
   senhaOculta=true;
 
-  public gravar(){
-    if (
-      this.obj.nome != "" &&
-      this.obj.email != "" &&
-      this.obj.telefone != "" &&
-      this.obj.endereco != "" &&
-      this.obj.senha != "" &&
-      this.obj.confirmarSenha != ""
-  ) {
-      if (this.obj.senha === this.obj.confirmarSenha) {
-          localStorage.setItem("cadastro", JSON.stringify(this.obj));
-          this.mensagem = "Parabéns! Seu cadastro foi realizado com sucesso!";
-      } else {
-          this.mensagem = "Senha e a confirmação devem ser iguais";
-      }
-  } else {
-      this.mensagem = "Preencha todos os campos!!!";
+  constructor(private service:ClienteService){
+    // this.carregar()
   }
-}
+
+  public limpar(){
+    this.obj = new Cliente();
+  }
+
+  public gravar() {
+    this.service.gravar(this.obj).subscribe({
+      next: (data: any) => {
+        if (data.mensagem.includes("Todo os campos devem ser preenchidos") ||
+            data.mensagem.includes("A senha e a confirmação da senha devem ser iguais") ||
+            data.mensagem.includes("Cliente já cadastrado com as mesmas informações"))  {
+          this.mensagem = data.mensagem;
+        } else {
+          this.mensagem = data.mensagem;
+          this.limpar();
+        }
+      },
+      error: (err) => {
+        console.error(err);
+        this.mensagem = "Ocorreu um erro, tente mais tarde!";
+      }
+    });
+  }
+
 
 PasswordVisivel: boolean = false;
 public SenhaVisivel(){
@@ -52,18 +61,16 @@ public ConfirmaSenhaVisivel(){
   caso ele já tenha um cadastro ele será levado para página de Login, onde podera entrar ou 
   fazer um novo cadastro */
 
-  public carregar(){
-    let json = localStorage.getItem("cliente");
-    if(json == null){
-      window.location.href="./login";
-    } else {
-      this.obj = JSON.parse(json);      
-    }
-  }
+  // public carregar(){
+  //   let json = localStorage.getItem("cliente");
+  //   if(json == null){
+  //     window.location.href="./login";
+  //   } else {
+  //     this.obj = JSON.parse(json);      
+  //   }
+  // }
 
-  constructor(){
-    this.carregar();
-  }
+  
 
   toggleSenha() {
     this.senhaOculta = !this.senhaOculta; // Alterna a visibilidade da senha

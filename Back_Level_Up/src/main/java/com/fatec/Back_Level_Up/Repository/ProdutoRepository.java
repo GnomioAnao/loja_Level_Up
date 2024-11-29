@@ -12,9 +12,11 @@ import com.fatec.Back_Level_Up.Entity.Produto;
 public interface ProdutoRepository extends
 JpaRepository<Produto, Integer> {
 
-    @Query(value = "select * from produto where destaque > 0", nativeQuery = true)
+    @Query(value = "SELECT * FROM produto WHERE destaque > 0 ORDER BY destaque DESC", nativeQuery = true)
     List<Produto> listarVitrine();
     
-    @Query(value = "select * from produto where nome=?1 and keywords=?2 ", nativeQuery = true)
-    List<Produto> fazerBusca(); 
+    // @Query(value = "SELECT * FROM produto WHERE keywords LIKE %?1%", nativeQuery = true)
+    // List<Produto> fazerBusca(String keywords);
+
+
 }

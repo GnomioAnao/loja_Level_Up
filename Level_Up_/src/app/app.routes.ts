@@ -19,3 +19,5 @@ export const routes: Routes = [
     {path:"esqueci", component:EsqueciComponent}
     
 ];
+
+//vou tirar de detalhe o /:codigo, depois eu vejo de fazer 

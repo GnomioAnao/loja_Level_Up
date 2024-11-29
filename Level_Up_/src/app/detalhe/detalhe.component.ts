@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Produto } from '../model/produto';
 import { Item } from '../model/item';
 import { Cesta } from '../model/cesta';
+import { ProdutoService } from '../service/produto.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detalhe',
@@ -11,17 +13,28 @@ import { Cesta } from '../model/cesta';
   templateUrl: './detalhe.component.html',
   styleUrl: './detalhe.component.css'
 })
+
 export class DetalheComponent {
   public mensagem: String = "";
   public item: Produto = new Produto();
-  constructor(){
-    let json = localStorage.getItem("produto");
-    if(json != null) {
-      this.item = JSON.parse(json);
-    } else {
-      this.mensagem ="Produto não encontrado!"
-    }
-  }
+  
+
+  
+  // constructor(private route: ActivatedRoute, private service: ProdutoService) {
+  //   this.route.params.subscribe(params => {
+  //     const codigo = params['codigo'];
+  //     this.carregarProduto(codigo);
+  //   });
+  // }
+
+  // carregarProduto(codigo: number) {
+  //   this.service.detalhe(codigo).subscribe({
+  //     next: (produto) => this.item = produto,
+  //     error: () => this.mensagem = "Produto não encontrado!"
+  //   });
+  // }
+
+
   public adicionarItem(obj:Produto){
     let json = localStorage.getItem("cesta");
     let jsonCliente = localStorage.getItem("cliente");

@@ -6,4 +6,5 @@ export class Produto {
     public quantidade: number = 0;
     public keywords: string = "";
     public descritivoCompleto : string = "";
+    public destaque: number = 0;
 }

@@ -1,9 +1,14 @@
 package com.fatec.Back_Level_Up.Controller;
 
+import com.fatec.Back_Level_Up.Entity.Cliente;
+import com.fatec.Back_Level_Up.Repository.ClienteRepository;
+
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,40 +17,84 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fatec.Back_Level_Up.Entity.Cliente;
-import com.fatec.Back_Level_Up.Repository.ClienteRepository;
 
+@CrossOrigin (origins = "*")
 @RestController
 public class ClienteController {
-      @Autowired
+
+    private boolean camposVazios(Cliente obj) {
+        return obj.getNome().isEmpty() || obj.getEmail().isEmpty() || obj.getSenha().isEmpty() || obj.getTelefone().isEmpty() || 
+               obj.getDocumento().isEmpty()  || obj.getEndereco().isEmpty() || obj.getCep().isEmpty() || obj.getConfirmarSenha().isEmpty();
+    }
+
+    private boolean senhasIguais(Cliente obj) {
+        return obj.getSenha().equals(obj.getConfirmarSenha());
+    }
+
+    @Autowired
     ClienteRepository bd;
 
     @PostMapping("/api/cliente")
-    public String gravar(@RequestBody Cliente obj){
+    public Map<String, String> gravar(@RequestBody Cliente obj) {
+        if (camposVazios(obj)) {
+            return Map.of("mensagem","Todo os campos devem ser preenchidos");
+        }
+
+        if (!senhasIguais(obj)) {
+            return Map.of("mensagem","A senha e a confirmação da senha devem ser iguais.");
+        }
+
+        Optional<Cliente> clienteExistente = bd.findByEmailDocumento(obj.getEmail(), obj.getDocumento());
+        if (clienteExistente.isPresent()) {
+            return Map.of("mensagem","Cliente já cadastrado com as mesmas informações");
+        }
+
         bd.save(obj);
-        return "O cliente "+ obj.getNome() + " foi salvo corretamente!";
+        return Map.of("mensagem", "O cliente " + obj.getNome() + " \nfoi salvo corretamente");
     }
 
     @PutMapping("/api/cliente")
-    public String alterar(@RequestBody Cliente obj){
+    public Map<String, String> alterar(@RequestBody Cliente obj){
+        if (camposVazios(obj)) {
+            return Map.of("mensagem","Todo os campos devem ser preenchidos para realizar a alteração");
+        }
+        if (!senhasIguais(obj)) {
+            return Map.of("mensagem","A senha e a confirmação da senha devem ser iguais.");
+        }
+
+        Optional<Cliente> clienteExistente = bd.findById(obj.getCodigo());
+        if (!clienteExistente.isPresent()) {
+            return Map.of("mensagem","Cliente não encontrado para alteração.");
+        }
+
+        Optional<Cliente> clienteExiste = bd.findByEmailDocumento(obj.getEmail(), obj.getDocumento());
+        if (clienteExiste.isPresent() && clienteExiste.get().getCodigo() != obj.getCodigo()) {
+            return Map.of("mensagem", "Cliente já cadastrado com as mesmas informações");
+        }
+
         bd.save(obj);
-        return "O cliente "+ obj.getNome() + " foi alterado corretamente!";
+        return Map.of("mensagem", "O cliente " + obj.getNome() + " \nfoi alterado corretamente.");
     }
 
-    @GetMapping("/api/cliente/{codigo}")
-    public Cliente carregar(@PathVariable int codigo){
-        Optional<Cliente> obj = bd.findById(codigo);
-        if(obj.isPresent()){
+    @GetMapping("/api/cliente/{valor}")
+    public Cliente carregar(@PathVariable String valor){
+        Optional<Cliente> obj = bd.findByCodigoDocumentoEmail(valor);
+        if (obj.isPresent()) {
             return obj.get();
         } else {
             return null;
         }
     }
 
-    @DeleteMapping("/api/cliente/{codigo}")
-    public String remover(@PathVariable int codigo){
-        bd.deleteById(codigo);
-        return "Registro "+ codigo + " removido com suceso!";
+    @DeleteMapping("/api/cliente/{valor}")
+    public Map<String, String> remover(@PathVariable String valor) {
+        Optional<Cliente> obj = bd.findByCodigoDocumentoEmail(valor);
+        if (obj.isPresent()) {
+            bd.delete(obj.get());
+            return null;
+        } else {
+            return Map.of("mensagem", "Cliente não encontrado");
+        }
     }
 
     @GetMapping("/api/clientes")
@@ -54,22 +103,22 @@ public class ClienteController {
     }
 
     @PostMapping("/api/cliente/login")
-    public Cliente fazerLogin(@RequestBody Cliente obj){
-        Optional<Cliente> retorno = 
-            bd.login(obj.getEmail(), obj.getSenha());
-        if(retorno.isPresent()){
+    public Object fazerLogin(@RequestBody Cliente obj) {
+        if (obj.getEmail() == null || obj.getEmail().trim().isEmpty() || obj.getSenha() == null || obj.getSenha().trim().isEmpty()) {
+            return Map.of("mensagem", "Os campos email e senha são obrigatórios.");
+        }
+        Optional<Cliente> retorno = bd.login(obj.getEmail(), obj.getSenha());
+        if (retorno.isPresent()) {
             return retorno.get();
         } else {
-            return null;
+            return Map.of("mensagem", "Usuário ou senha inválidos");
         }
     }
 
-
     @PostMapping("/api/cliente/recupera")
     public Cliente recuperarSenha(@RequestBody Cliente obj){
-        Optional<Cliente> retorno = 
-            bd.recuperaSenha(obj.getEmail());
-        if(retorno.isPresent()){
+        Optional<Cliente> retorno = bd.recuperaSenha(obj.getEmail());
+        if (retorno.isPresent()) {
             return retorno.get();
         } else {
             return null;

@@ -1,21 +1,23 @@
 package com.fatec.Back_Level_Up.Entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 
 @Entity
 public class Produto {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) 
     private int codigo;
-    private String nome; 
+    private String nome;
     private String descritivo;
     private double valor;
-    private int quantidade;
+    private String quantidade;
     private String keywords;
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
     private String descritivoCompleto;
+    private int destaque = 0;
 
 
     public int getCodigo() {
@@ -42,10 +44,10 @@ public class Produto {
     public void setValor(double valor) {
         this.valor = valor;
     }
-    public int getQuantidade() {
+    public String getQuantidade() {
         return quantidade;
     }
-    public void setQuantidade(int quantidade) {
+    public void setQuantidade(String quantidade) {
         this.quantidade = quantidade;
     }
     public String getKeywords() {
@@ -60,6 +62,10 @@ public class Produto {
     public void setDescritivoCompleto(String descritivoCompleto) {
         this.descritivoCompleto = descritivoCompleto;
     }
-
-    
+    public int getDestaque() {
+        return destaque;
+    }
+    public void setDestaque(int destaque) {
+        this.destaque = destaque;
+    }
 }

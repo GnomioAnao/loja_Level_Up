@@ -10,7 +10,7 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int codigo;
-    private Produto produto = new Produto();
+    // private Produto produto = new Produto();
     private int quantidade;
     private double valor;
     
@@ -20,12 +20,12 @@ public class Item {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
-    public Produto getProduto() {
-        return produto;
-    }
-    public void setProduto(Produto produto) {
-        this.produto = produto;
-    }
+    // public Produto getProduto() {
+    //     return produto;
+    // }
+    // public void setProduto(Produto produto) {
+    //     this.produto = produto;
+    // }
     public int getQuantidade() {
         return quantidade;
     }
