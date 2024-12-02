@@ -1,0 +1,36 @@
+.notificacao {
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #FFFDD0, #b702bdbe);
+    color: #0b000f;
+    padding: 20px;
+    border: 3px solid #9a02b1;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(194, 3, 184, 0.8), inset 0 0 10px rgba(0, 0, 0, 0.4);
+    font-size: 13px;
+    /*font-family: 'Times New Roman', serif; /* Ou uma fonte com temática medieval */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    max-width: 400px;
+    z-index: 9999;
+}
+
+/* Animação de entrada */
+.notificacao {
+    animation: aparecer 0.5s ease-out forwards;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}

@@ -14,11 +14,11 @@ export class ProdutoService {
     return this.http.get("http://localhost:8080/api/produto/vitrine");
   }
 
-  // detalhe(codigo: number): Observable<any>{
-  //   return this.http.get("http://localhost:8080/api/produto/detalhe/"+ codigo)
-  // }
+  detalhe(codigo: number): Observable<any>{
+    return this.http.get("http://localhost:8080/api/produto/detalhe/"+ codigo)
+  }
 
-//   pesquisar(termo:string):Observable<any> {
-//     return this.http.get("http://localhost:8080/api/produto/busca/"+termo); 
-//   }
+  pesquisar(termo:string):Observable<any> {
+    return this.http.get("http://localhost:8080/api/produto/busca/"+termo); 
+  }
 }

@@ -16,7 +16,7 @@ export class HeaderComponent {
 
   fazerBusca() {
     if (this.filtro.trim()) {
-      this.router.navigate(['/busca'], { queryParams: { q: this.filtro } })
+      window.location.href = `/busca?q=${this.filtro}`;
     }
   }
 }

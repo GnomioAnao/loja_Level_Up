@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common'; 
+import { NotificacaoComponent } from '../notificacao/notificacao.component';
 import { Produto } from '../model/produto';
 import { Item } from '../model/item';
 import { Cesta } from '../model/cesta';
 import { ProdutoService } from '../service/produto.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pagina-inicial',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NotificacaoComponent],
   templateUrl: './pagina-inicial.component.html',
   styleUrl: './pagina-inicial.component.css'
 })
@@ -21,24 +23,32 @@ export class PaginaInicialComponent {
     
 
   ];
-  constructor(private service:ProdutoService) {
+  constructor(private service:ProdutoService, private router: Router) {
     this.carregarListaProduto();
   }  
 
   carregarListaProduto(){
     this.service.vitrine().subscribe({
       next:(data)=>{
+        console.log ('Produtos carregados', data);
         this.lista = data
         if(this.lista.length <= 0) this.mensagem = "Vitrine Vazia!!!";
       },
-      error:(msg)=>(this.mensagem = "Ocorreu erro tente mais tarde!!!!")
+      error:(msg)=>{
+        console.error ('Erro ao carregar produtos:', msg);
+        (this.mensagem = "Ocorreu erro tente mais tarde!!!!")
+      }
+      
     })
   }
 
+  
+
   public verDetalhe(item:Produto) {
-    localStorage.setItem("produto", JSON.stringify(item));
-    window.location.href = "./detalhe";
-  //   window.location.href =`/detalhe/${item.codigo}`;
+    // localStorage.setItem("produto", JSON.stringify(item));
+    // window.location.href = "./detalhe";
+   window.location.href =`/detalhe/${item.codigo}`;
+  //this.router.navigate(['/detalhe']);  // Navega para a página de detalhes com o código
   }
 
   public adicionarItem(obj:Produto){

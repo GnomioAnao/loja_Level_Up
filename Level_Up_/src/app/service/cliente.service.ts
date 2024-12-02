@@ -34,8 +34,12 @@ export class ClienteService {
     return this.http.post("http://localhost:8080/api/cliente/login", obj)
   }
 
-  recuperarSenha(obj: Cliente): Observable<any>{
-    return this.http.post("http://localhost:8080/api/cliente/recupera", obj)
+  esqueciSenha(obj: Cliente): Observable<any> {
+    return this.http.post("http://localhost:8080/api/cliente/recupera", obj);
+  }
+
+  redefinirSenha(email: string, novaSenha: string, token: string) {
+    return this.http.post("http://localhost:8080/api/cliente/redefinir", { email, novaSenha, token });
   }
 
   

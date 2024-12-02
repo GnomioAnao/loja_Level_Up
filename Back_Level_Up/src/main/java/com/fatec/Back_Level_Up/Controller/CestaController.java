@@ -24,43 +24,50 @@ import com.fatec.Back_Level_Up.Repository.CestaRepository;
 @RestController
 @CrossOrigin(origins = "*")
 public class CestaController {
-  @Autowired
-  CestaRepository bd;
+    @Autowired
+    CestaRepository bd;
 
     @PostMapping("/api/cesta")
-    public Cesta gravar(@RequestBody Cesta obj){
-       obj.setCodigoCliente();
-       bd.save(obj);
-       return obj;
+    public Cesta gravar(@RequestBody Cesta obj) {
+        if (obj.getCliente() != null && obj.getCliente().getCodigo() != 0) {
+            obj.setCodigoCliente();
+        } else {
+            throw new IllegalArgumentException("Código do cliente inválido");
+        }
+        int maxCodigo = bd.codMaximo();
+        int novoCodigo = maxCodigo + 1;
+        obj.setCodigo(novoCodigo);
+
+        Cesta cesta = bd.save(obj);
+        return cesta;
     }
 
     @PutMapping("/api/cesta")
-    public void alterar(@RequestBody Cesta obj){
+    public void alterar(@RequestBody Cesta obj) {
         bd.save(obj);
-       }
+    }
 
     @GetMapping("/api/cesta/{codigo}")
-    public Cesta carregar(@PathVariable int codigo){
-       Optional<Cesta> obj = bd.findById(codigo);
-       if(obj.isPresent()){
+    public Cesta carregar(@PathVariable int codigo) {
+        Optional<Cesta> obj = bd.findById(codigo);
+        if (obj.isPresent()) {
             return obj.get();
         } else {
             Cesta c1 = new Cesta();
             c1.setCliente(new Cliente());
-            Set<Item> itens = new HashSet<Item>();
-            itens.add(new Item());
-            c1.setItens(itens);
+            c1.setItens(new HashSet<>());
             return c1;
         }
     }
 
     @DeleteMapping("/api/cesta/{codigo}")
-    public void remover(@PathVariable int codigo){
+    public void remover(@PathVariable int codigo) {
         bd.deleteById(codigo);
-       }
+    }
 
     @GetMapping("/api/cestas")
-    public List<Cesta> listar(){
-       return bd.findAll();
+    public List<Cesta> listar() {
+        return bd.findAll();
     }
 }
+

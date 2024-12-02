@@ -15,8 +15,8 @@ JpaRepository<Produto, Integer> {
     @Query(value = "SELECT * FROM produto WHERE destaque > 0 ORDER BY destaque DESC", nativeQuery = true)
     List<Produto> listarVitrine();
     
-    // @Query(value = "SELECT * FROM produto WHERE keywords LIKE %?1%", nativeQuery = true)
-    // List<Produto> fazerBusca(String keywords);
+    @Query(value = "SELECT * FROM produto WHERE keywords LIKE %?1%", nativeQuery = true)
+    List<Produto> fazerBusca(String keywords);
 
 
 }

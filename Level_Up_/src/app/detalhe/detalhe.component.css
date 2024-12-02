@@ -1,149 +1,109 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
-.centraliza {
-    position: relative;
-    text-align: center;
-    padding: 0;
-    margin: 20px;
-}
-
-.fixa_imagem{
-    background-color: #f5f5dc; /* Cor de fundo como fallback */
-    
-    /* Imagem de fundo */
-    /* background-image: url('./public/dino_base.jpg'); */
-    
-    /* Faz a imagem cobrir toda a tela sem cortar */
-    background-attachment: fixed;
-    background-size: cover; /* A imagem será redimensionada para cobrir toda a área do body */
-    background-repeat: repeat; /* Evita que a imagem se repita */
-    background-position: 0 0; /* Centraliza a imagem tanto horizontal quanto verticalmente */
-    animation: mover-fundo 10s linear infinite;
-    
-    /* Adiciona altura mínima para garantir que o fundo cubra toda a tela */
-    min-height: 100vh; /* 100% da altura da viewport */
-}
-/* Estilos básicos do corpo */
-body {
+/* Estilo para o contêiner principal */
+div {
     font-family: 'Press Start 2P', cursive;
-    background-color: #f5f5dc; /* Cor de fundo creme */
-    color: #4b0082; /* Texto roxo */
+    color: #4b0082; /* Roxo */
     text-align: center;
     padding: 20px;
-    margin: 0;
-}
-
-
-/* Importar a fonte "Press Start 2P" */
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
-/* Estilos básicos para o body */
-body {
-    font-family: 'Press Start 2P', cursive;
-    background-color: #f5f5dc;
-    background-image: url('/public/dino1.jpg'); /* Imagem de fundo personalizada */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    color: #4b0082;
-    text-align: center;
-    margin: 0;
-    padding: 20px;
-}
-
-/* Centralizar e quebrar linhas do conteúdo */
-h4, h3{
-    color: #4b0082; 
-    word-wrap: break-word; /* Garante a quebra de linha quando o texto for longo */
-    width: 100%; /* Garante que o texto ocupe a largura máxima disponível */
-    max-width: 800px; /* Define um limite para evitar textos muito esticados */
-    margin: 0 auto; /* Centraliza o texto horizontalmente */
-}
-
-/* Adicionar fundo ao texto */
-h3 {
-   /* background-color: rgba(255, 255, 255, 0.8); /* Fundo semi-transparente para destacar o título */
-    padding: 10px;
+    margin: 20px auto;
+    background-color: rgba(245, 245, 220, 0.8); /* Fundo creme com transparência */
+    border: 5px solid #4b0082; /* Bordas roxas */
     border-radius: 8px;
+    max-width: 500px; /* Limita o tamanho do contêiner */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Sombra */
 }
 
+/* Estilo para mensagens */
+h4 {
+    color: #4b0082; /* Roxo */
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+/* Estilo para o título do item */
+h1 {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+/* Estilo da imagem do item */
+img.product-image {
+    width: 100%;
+    max-width: 300px; /* Limita o tamanho máximo */
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 2px solid #4b0082; /* Bordas da imagem */
+}
+
+/* Estilo para os parágrafos */
 p {
-    word-wrap: break-word; /* Garante a quebra de linha quando o texto for longo */
-    width: 100%; /* Garante que o texto ocupe a largura máxima disponível */
-    max-width: 800px; /* Define um limite para evitar textos muito esticados */
-    margin: 0 auto; /* Centraliza o texto horizontalmente */
-    color: #f5f5dc;
-    background-color: #4b0082; /* Fundo semi-transparente para destacar o texto */
-    padding: 10px;
-    border-radius: 8px;
+    margin: 5px 0;
+    font-size: 14px;
 }
 
-/* Estilizar o botão e garantir herança de fonte */
-button {
-    background-color: #4b0082;
-    color: #f5f5dc;
-    font-family: 'Press Start 2P', cursive; /* Garante que o botão use a fonte */
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
+/* Estilo para a mensagem "Sem estoque" */
+div {
+    color: red;
     font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Botão de compra */
+button {
+    background-color: #4b0082; /* Roxo */
+    color: #f5f5dc; /* Creme */
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 10px 15px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    display: inline-block;
-    word-wrap: break-word; /* Garante que o texto dentro do botão quebre a linha se necessário */
+    font-family: 'Press Start 2P', cursive;
+    margin-top: 10px;
 }
 
+/* Efeito hover no botão */
 button:hover {
-    background-color: #6a0dad;
+    background-color: #6a0dad; /* Roxo mais claro */
     transform: scale(1.1);
 }
 
-/* Estilo da imagem */
-img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 20px;
-    border: 4px solid #4b0082;
-    border-radius: 8px;
-}
-
-/* Mensagem "Sem estoque" */
-div {
-    color: #ff4500;
-    font-size: 14px;
-    margin-top: 20px;
-    text-align: center;
-}
-
-/* Media Queries para telas menores */
+/* Media Query para tablets */
 @media (max-width: 768px) {
-    h3, p {
-        font-size: 18px;
-        max-width: 100%; /* Ajusta a largura para telas menores */
-    }
-
-    button {
-        font-size: 12px;
-        padding: 8px 16px;
-    }
-
     div {
+        padding: 15px;
+    }
+    h1 {
+        font-size: 20px;
+    }
+    p {
         font-size: 12px;
+    }
+    button {
+        font-size: 10px;
+        padding: 8px 12px;
+    }
+    img.product-image {
+        max-width: 250px; /* Ajuste da imagem em tablets */
     }
 }
 
+/* Media Query para celulares */
 @media (max-width: 480px) {
-    h3, p {
-        font-size: 16px;
-        max-width: 100%;
-    }
-
-    button {
-        font-size: 10px;
-        padding: 6px 12px;
-    }
-
     div {
+        padding: 10px;
+    }
+    h1 {
+        font-size: 18px;
+    }
+    p {
         font-size: 10px;
+    }
+    button {
+        font-size: 8px;
+        padding: 6px 10px;
+    }
+    img.product-image {
+        max-width: 200px; /* Ajuste da imagem em celulares */
     }
 }

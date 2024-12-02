@@ -4,28 +4,52 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 
 @Entity
 public class Item {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO) 
     private int codigo;
-    // private Produto produto = new Produto();
-    private int quantidade;
-    private double valor;
-    
+    private int codigoProduto;
+    @Transient
+    private Produto produto = new Produto();
+    private int quantidade = 0;
+    private double valor = 0;
+    private int codigoCesta = 0;
+
+
+    public int getCodigoCesta() {
+        return codigoCesta;
+    }
+    public void setCodigoCesta(int codigoCesta) {
+        this.codigoCesta = codigoCesta;
+    }
+
+
+    public int getCodigoProduto() {
+        return codigoProduto;
+    }
+
+      public void setCodigoProduto(int codigoProduto) {
+        this.codigoProduto = codigoProduto;
+    }
+
     public int getCodigo() {
         return codigo;
     }
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
-    // public Produto getProduto() {
-    //     return produto;
-    // }
-    // public void setProduto(Produto produto) {
-    //     this.produto = produto;
-    // }
+    public Produto getProduto() {
+        return produto;
+    }
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+         if (produto != null) {
+            this.codigoProduto = produto.getCodigo(); // Atribui automaticamente o código do produto
+        }
+    }
     public int getQuantidade() {
         return quantidade;
     }
@@ -39,5 +63,5 @@ public class Item {
         this.valor = valor;
     }
 
-    
+
 }

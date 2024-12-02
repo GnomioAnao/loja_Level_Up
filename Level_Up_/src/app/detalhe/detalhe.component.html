@@ -1,19 +1,21 @@
-<body class="fixa_imagem">
-    <h4>{{mensagem}}</h4> <!-- Mensagem de erro ou aviso -->
+
+<div >
+    <h4 *ngIf="mensagem">{{ mensagem }}</h4> <!-- Mensagem de erro ou aviso -->
     <div *ngIf="item.codigo > 0">
-        <h1>{{item.nome}}</h1> <!-- Nome do item -->
-        
-        <!-- Imagem do item -->
-        <img src="./{{item.codigo}}.jpg" alt="{{item.nome}}"><br> 
-        
-        <!-- Descritivo e valor do item -->
-        <p>{{item.descritivoCompleto}}</p>
-        <p>R$ {{item.valor}}</p>
-        <br><br>
-        <!-- Botão de compra -->
-        
-        <!-- Mensagem "Sem estoque" -->
-        <div *ngIf="item.quantidade <= 0">Sem estoque</div>
+      <h1>{{ item.nome }}</h1> <!-- Nome do item -->
+  
+      <!-- Imagem do item -->
+      <!-- <img [src]="'./' + item.codigo + '.jpg'" alt="{{ item.nome }}" /><br /> -->
+      <img src="/{{item.codigo}}.jpg" class="product-image" alt="{{item.nome}}"> 
+      <!-- Descritivo e valor do item -->
+      <p>{{ item.descritivoCompleto }}</p><br>
+      <p>R$ {{ item.valor | number: '1.2-2' }}</p>
+      <br /><br />
+      <!-- Mensagem "Sem estoque" -->
+      <div *ngIf="+item.quantidade <= 0">Sem estoque</div>
+      <!-- Botão de compra -->
+      <button *ngIf="+item.quantidade > 0" (click)="adicionarItem(item)">Comprar</button>
     </div>
-    <button *ngIf="item.quantidade > 0" (click)="adicionarItem(item)">Comprar</button>
-</body>
+  </div>
+
+  
