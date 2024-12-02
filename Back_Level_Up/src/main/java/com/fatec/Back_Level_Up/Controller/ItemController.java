@@ -36,14 +36,16 @@ public class ItemController {
     }
 
     @PostMapping("/api/itensCesta")
-    public void gravarLista(@RequestBody List<Item> obj) {
-        for (Item item : obj) {
-            if (item.getProduto() != null && item.getProduto().getCodigo() != 0) {
-                item.setCodigoProduto(item.getProduto().getCodigo());
-            }
+    public void gravarLista(@RequestBody List<Item> itens) {
+    for (Item item : itens) {
+        // Garante que itens existentes no banco não sejam sobrescritos
+        item.setCodigo(0); // Reseta o código para que um novo seja gerado
+        if (item.getProduto() != null && item.getProduto().getCodigo() != 0) {
+            item.setCodigoProduto(item.getProduto().getCodigo());
         }
-        bd.saveAll(obj);
     }
+    bd.saveAll(itens); // Persiste todos os itens como novos
+}
 
     @PutMapping("/api/item")
     public void alterar(@RequestBody Item obj) {

@@ -12,7 +12,7 @@ import { CestaService } from '../service/cesta.service';
   styleUrls: ['./cesta.component.css']
 })
 export class CestaComponent {
-  public mensagem: string = "Inventário";
+  public mensagem: string = "";
   public cesta: Cesta = new Cesta();
   public total: number = 0;
   
@@ -72,17 +72,21 @@ export class CestaComponent {
   /**
    * Grava os itens de um pedido.
    */
-  gravarItens(novoPedido: Cesta){
-    for(let obj of this.cesta.itens){
-        obj.codigoCesta = novoPedido.codigo
-    }
-    this.service.gravarItens(this.cesta.itens).subscribe({
-      next:(data)=>{
-        this.limparCompra(novoPedido);
-      },
-      error: () => {
-        this.mensagem = "Erro ao salvar itens da taverna, tente novamente.";
-      }
+  gravarItens(novoPedido: Cesta) {
+    const novosItens = this.cesta.itens.map((item) => {
+        const novoItem = { ...item }; // Cria uma cópia do item
+        novoItem.codigo = 0; // Reseta o código para garantir que o backend crie um novo
+        novoItem.codigoCesta = novoPedido.codigo; // Associa ao novo pedido
+        return novoItem;
+    });
+
+    this.service.gravarItens(novosItens).subscribe({
+        next: (data) => {
+            this.limparCompra(novoPedido);
+        },
+        error: () => {
+            this.mensagem = "Erro ao gravar itens do pedido, tente novamente.";
+        }
     });
   }
 
