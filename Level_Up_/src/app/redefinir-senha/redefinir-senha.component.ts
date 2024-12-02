@@ -30,7 +30,7 @@ export class RedefinirSenhaComponent {
     }
     this.service.redefinirSenha(this.email, this.novaSenha, this.token).subscribe({
       next: () => {
-        this.mensagem = "Senha redefinida com sucesso!";
+        this.mensagem = "Save atualizado com sucesso!";
 
         // Atraso de 1 segundos antes de redirecionar
         setTimeout(() => {
@@ -38,7 +38,7 @@ export class RedefinirSenhaComponent {
         }, 1000); // 1000 milissegundos = 1 segundos
       },
       error: (err) => {
-        this.mensagem = "Erro ao redefinir a senha.";
+        this.mensagem = "Erro ao recuperar o loot, você MORREU!!.";
         console.error(err);
       }
     });

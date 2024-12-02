@@ -12,7 +12,7 @@ import { CestaService } from '../service/cesta.service';
   styleUrls: ['./cesta.component.css']
 })
 export class CestaComponent {
-  public mensagem: string = "Sua cesta";
+  public mensagem: string = "Inventário";
   public cesta: Cesta = new Cesta();
   public total: number = 0;
   
@@ -30,7 +30,7 @@ export class CestaComponent {
       this.cesta = JSON.parse(json);
       this.atualizarTotal();
     } else {
-      this.mensagem = "Carrinho vazio, adicione novos itens!";
+      this.mensagem = "Inventário sem loot, procure um farm!";
     }
   }
 
@@ -47,7 +47,7 @@ export class CestaComponent {
    */
   public gravarPedido() {
     if (this.cesta.itens.length === 0) {
-      this.mensagem = "Carrinho vazio! Adicione itens antes de realizar o pedido.";
+      this.mensagem = "Inventário sem loot! Farm itens antes de iniciar a missão!";
       return;
     }
     const jsonCliente = localStorage.getItem("cliente");
@@ -65,7 +65,7 @@ export class CestaComponent {
         }
       });
     } else {
-      this.mensagem = "Faça o login para gravar o pedido!";
+      this.mensagem = "Entre no servidor do jogo para coletar ouro!";
      
     }
   }
@@ -81,7 +81,7 @@ export class CestaComponent {
         this.limparCompra(novoPedido);
       },
       error: () => {
-        this.mensagem = "Erro ao gravar itens do pedido, tente novamente.";
+        this.mensagem = "Erro ao salvar itens da taverna, tente novamente.";
       }
     });
   }
@@ -104,7 +104,7 @@ export class CestaComponent {
     }
 
     if (this.cesta.itens.length === 0) {
-      this.mensagem = "Carrinho vazio, adicione novos itens!";
+      this.mensagem = "Imventário vazio, farm novos itens!";
       this.limpar();
     }
   }
@@ -116,14 +116,14 @@ export class CestaComponent {
   private limparCompra(novoPedido: Cesta) {
     localStorage.removeItem("cesta");
     this.cesta = new Cesta();
-    this.mensagem = `Compra realizada com sucesso! Pedido nº ${novoPedido.codigo}`;
+    this.mensagem = `Nova conquista desbloqueada com sucesso! Pedido nº ${novoPedido.codigo}`;
   }
   
   public limpar() {
     localStorage.removeItem("cesta");
     this.cesta = new Cesta();
     this.total = 0;
-    this.mensagem = "Carrinho vazio, adicione novos itens!";
+    this.mensagem = "Inventário vazio, farm novos itens!";
   }
 
   /**
